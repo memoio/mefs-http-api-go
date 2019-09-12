@@ -4,11 +4,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"math/big"
 	"strconv"
-
-	peer "github.com/libp2p/go-libp2p-peer"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
 )
 
 type UserPrivMessage struct {
@@ -151,24 +147,9 @@ func (pl PeerList) String() string {
 	return res
 }
 
-type QueryEventType int
-
-const (
-	SendingQuery QueryEventType = iota
-	PeerResponse
-	FinalPeer
-	QueryError
-	Provider
-	Value
-	AddingPeer
-	DialingPeer
-)
-
-type QueryEvent struct {
-	ID        peer.ID
-	Type      QueryEventType
-	Responses []*pstore.PeerInfo
-	Extra     string
+type queryEvent struct {
+	ID    string
+	Extra string
 }
 
 type GetBlockResult struct {
@@ -244,9 +225,9 @@ func (s *Shell) ListKeepers(options ...LfsOpts) (*PeerList, error) {
 	return res, nil
 }
 
-func (s *Shell) ChallengeTest(key, to string, options ...LfsOpts) (string, error) {
+func (s *Shell) DeleteFrom(key, to string, options ...LfsOpts) (string, error) {
 	var res string
-	rb := s.Request("dht/challengeTest", key, to)
+	rb := s.Request("dht/deletefrom", key, to)
 	for _, option := range options {
 		option(rb)
 	}
@@ -257,8 +238,8 @@ func (s *Shell) ChallengeTest(key, to string, options ...LfsOpts) (string, error
 	return res, nil
 }
 
-func (s *Shell) GetFrom(key, id string, options ...LfsOpts) (*QueryEvent, error) {
-	var res *QueryEvent
+func (s *Shell) GetFrom(key, id string, options ...LfsOpts) (*queryEvent, error) {
+	var res *queryEvent
 	rb := s.Request("dht/getfrom", key, id)
 	for _, option := range options {
 		option(rb)

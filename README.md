@@ -6,7 +6,7 @@
 ## install
 
 ```sh
-go get -u github.com/memoio/mefs-go-http-client
+go get -u github.com/memoio/mefs-http-api-go
 ```
 
 ## prepare
