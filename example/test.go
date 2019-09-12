@@ -9,7 +9,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/memoio/mefs-go-http-client"
+	shell "github.com/memoio/mefs-http-api-go"
 )
 
 // 需要提前准备好，已充值测试Token的User
