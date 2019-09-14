@@ -1,4 +1,4 @@
-module mefs-http-api-go
+module github.com/memoio/mefs-http-api-go
 
 go 1.12
 
