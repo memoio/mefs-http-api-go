@@ -21,6 +21,7 @@ func sleep() {
 
 func main() {
 	sh = shell.NewShell("localhost:5001")
+	//err := sh.GetObject("poss", "bucket01", path.Join(os.Getenv("HOME"), "poss1"))
 	p := path.Join(os.Getenv("HOME"), "poss1")
 	file, err := os.Open(p)
 	ob, err := sh.PutObject(file, path.Base(file.Name()), "bucket01")
