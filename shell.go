@@ -1,4 +1,4 @@
-// package shell implements a remote API interface for a running ipfs daemon
+// Package shell implements a remote API interface for a running ipfs daemon
 package shell
 
 import (

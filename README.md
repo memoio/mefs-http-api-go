@@ -41,32 +41,6 @@ In a web browser mefs HTTP client (either browserified or CDN-based) might enc
 
 see example directory
 
-```go
-package main
-
-import (
-	"fmt"
-	"os"
-	"path"
-	"time"
-
-	"github.com/memoio/mefs-go-http-client"
-)
-
-func main() {
-
-	// your local address
-	p := path.Join(os.Getenv("HOME"), "test")
-	file, err := os.Open(p)
-	ob, err := sh.PutObject(file, path.Base(file.Name()), "bucket01")
-	fmt.Println(ob, err)
-	bks, err := sh.ListBuckets()
-	fmt.Println(bks, err)
-	obs, err := sh.ListObjects(bks.Buckets[0].BucketName)
-	fmt.Println(obs, err)
-}
-```
-
 ## Usage
 
 See [mefs docs](https://github.com/memoio/docs)
