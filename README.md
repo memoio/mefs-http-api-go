@@ -1,19 +1,11 @@
 # go-mefs-api
 
-
 > A go interface to mefs's HTTP API
 
 ## install
 
 ```sh
 go get -u github.com/memoio/mefs-http-api-go
-```
-
-or use proxy:
-
-```sh
-// go version >= 1.11
-GO111MODULE=on GOPROXY=https://goproxy.io go get -u github.com/memoio/mefs-http-api-go
 ```
 
 ## prepare
@@ -24,7 +16,7 @@ To interact with the API, you need to have a local daemon running. It needs to b
 # Show the mefs config API port
 > mefs config Addresses.API
 /ip4/127.0.0.1/tcp/5001
-# set api port and binding to all ip 
+# set api port and binding to all ip
 > mefs config Addresses.API /ip4/0.0.0.0/tcp/5001
 # Restart the daemon after changing the config
 > mefs shutdown
@@ -62,7 +54,7 @@ import (
 )
 
 func main() {
-	
+
 	// your local address
 	p := path.Join(os.Getenv("HOME"), "test")
 	file, err := os.Open(p)
@@ -81,25 +73,24 @@ See [mefs docs](https://github.com/memoio/docs)
 
 ### LFS
 
-The API enables users to use the LFS abstraction of MEFS. 
+The API enables users to use the LFS abstraction of MEFS.
 
 #### StartUser
 
-> start user's lfs service 
+> start user's lfs service
 
 ##### `CreateBucket(addr,ops...)`
-
 
 `addr` AddressID. Initialize user service with the given address. Type is `string`.
 
 `options` is an optional object argument that might include the following keys:
 
 - `pwd` PassWord. Password of the actual user that you want to execute. Type is `string`.
-- `sk` SecreteKey. Private key of the actual user that you want to execute. Type is `string`. If `sk` is not `nil`, mefs will store `sk` in the keystore with `pwd`; otherwise, mefs tries to load the private key from the keystore use the `addr` and `pwd`.  
+- `sk` SecreteKey. Private key of the actual user that you want to execute. Type is `string`. If `sk` is not `nil`, mefs will store `sk` in the keystore with `pwd`; otherwise, mefs tries to load the private key from the keystore use the `addr` and `pwd`.
 
 ```go
 	sh = shell.NewShell("localhost:5001")
-	
+
 	// set multiple parameters
 	op1 := shell.SetOp(option1, opsValue1)
 	op2 := shell.SetOp(option2, opsValue2)
@@ -123,7 +114,6 @@ The API enables users to use the LFS abstraction of MEFS.
 - `dc` DataCount. `default` is 3.
 - `pc` ParityCount. `default` is 2.
 
-
 #### `DeleteBucket`
 
 > delete a bucket in lfs.
@@ -136,13 +126,11 @@ The API enables users to use the LFS abstraction of MEFS.
 
 - `addr` AddressID. The actual user's addressid that you want to execute. Type is `string`.
 
-
 #### `PutObject`
 
 > put an object to a bucket
 
 ##### `PutObject(data, objectName, bucketName, ops...)`
-
 
 `data` is the data we want to store.
 `bucketName` is a string of the bucket name.
@@ -151,7 +139,6 @@ The API enables users to use the LFS abstraction of MEFS.
 `options` is an optional object argument that might include the following keys:
 
 - `addr` AddressID. The actual user's addressid that you want to execute. Type is `string`.
-
 
 #### `GetObject`
 
@@ -166,7 +153,6 @@ The API enables users to use the LFS abstraction of MEFS.
 
 - `addr` AddressID. The actual user's addressid that you want to execute. Type is `string`.
 
-
 #### `DeleteObject`
 
 > delete an object in a bucket.
@@ -175,6 +161,3 @@ The API enables users to use the LFS abstraction of MEFS.
 
 `bucketName` is a string of the bucket name.
 `objectName` is a string of the object name.
-
-
-
