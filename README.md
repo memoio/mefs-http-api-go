@@ -6,6 +6,12 @@
 ## install
 
 ```sh
+go get -u github.com/memoio/mefs-http-api-go
+```
+
+or use proxy:
+
+```sh
 // go version >= 1.11
 GO111MODULE=on GOPROXY=https://goproxy.io go get -u github.com/memoio/mefs-http-api-go
 ```
